@@ -13,6 +13,63 @@ const max = 128;
 
 
 
+
+// Set rules for password so it takes the user input and applies it to the generate password function
+function setPasswordRules() {
+  var passwordRules = []
+  var userInput;
+  
+
+  userInput = confirm("Do you want password to have Uppercase letters?")
+
+  if (userInput) {
+    passwordRules.push.apply(passwordRules, uppercaseCharacters);
+  
+
+  userInput = confirm("Do you want password to have Lowercase letters?") 
+
+  if (userInput){
+    passwordRules.push.apply(passwordRules, lowercaseCharacters);
+  }
+
+  userInput = confirm("Do you want password have Special characters?")
+
+  if (userInput) {
+    passwordRules.push.apply(passwordRules, specialCharacters);
+  }
+
+  userInput = confirm("Do you want password have Numbers?")
+
+  if (userInput) {
+    passwordRules.push.apply(passwordRules, numbers);
+
+  } 
+  if (passwordRules.length === 0) {
+    alert (
+      "Must pick one type"
+    );
+      return;
+  }
+  return passwordRules;
+}
+}
+
+//generate password
+function generatePassword(passwordLength, passwordRules) {
+  var password = "";
+  for (var i = 0; i < passwordLength; i++) {
+
+    var random = Math.floor(passwordRules.length * Math.random(i) )
+
+    password += passwordRules[random].charAt(Math.floor(passwordRules[random].length * Math.random(i))
+
+    );
+  }
+  return password;
+}
+
+// Write password to the #password input
+// Set length for password by taking into account the user input and applies it to the generate password function to either get a randomized numher or user inputed number
 function setPasswordLength () {
   passwordLength > 8;
   passwordLength < 128;
@@ -24,7 +81,12 @@ function setPasswordLength () {
 
   if (userInput > 8 || userInput < 128) {
     passwordLength = userInput;
-  }
+  } else {
+    alert (
+      `${userInput} is not applicable`
+    );
+    return;
+}
 
   if (userInput === null || typeof userInput === "undefined" || typeof userInput === "cancel") {
     alert ("Maybe next time")
@@ -39,78 +101,29 @@ function setPasswordLength () {
     );
     return passwordLength;
 
+
   } else {
+
     if (userInput.match()) {
+
       userInput = parseInt(userInput);
+
       if (userInput < min || userInput > max) {
         alert (
           "The password length that you inputed is not between 8-128, please try again"
         );
         return passwordRules;
-      } else {
-         userInput = passwordLength;
-         return passwordLength;
+
+
+        } else {
+          userInput = passwordLength;
+          return passwordLength;
       }
-      } else if (userInput) {
-        alert (
-          `${userInput} is not applicable`
-        );
-        return;
+
       }
     }
   }
 
-
-
-
-// Get references to the #generate element
-function setPasswordRules() {
-  var passwordRules = []
-  var userInput;
-  
-
-  userInput = confirm("Do you want password to have Uppercase letters?")
-  if (userInput) {
-    passwordRules.push.apply(passwordRules, uppercaseCharacters);
-  }
-
-  userInput = confirm("Do you want password to have Lowercase letters?") 
-  if (userInput){
-    passwordRules.push.apply(passwordRules, lowercaseCharacters);
-  }
-
-  userInput = confirm("Do you want password have Special characters?")
-  if (userInput) {
-    passwordRules.push.apply(passwordRules, specialCharacters);
-  }
-
-  userInput = confirm("Do you want password have Numbers?")
-  if (userInput) {
-    passwordRules.push.apply(passwordRules, numbers);
-
-  } 
-  if (passwordRules.length === 0) {
-    alert (
-      "Must pick one type"
-    );
-      return;
-  }
-  return passwordRules;
-}
-
-//generate password
-function generatePassword(passwordLength, passwordRules) {
-  var password = "";
-  for (var i = 0; i < passwordLength; i++) {
-    var random = Math.floor(passwordRules.length * Math.random(i) )
-    password += passwordRules[random].charAt(
-      Math.floor(passwordRules[random].length * Math.random(i))
-    );
-  }
-  return password;
-}
-
-// Write password to the #password input
 
      
 //write password
@@ -123,14 +136,17 @@ function generatePassword(passwordLength, passwordRules) {
   passwordLength = setPasswordLength();
 
 
-  if (passwordLength === 0 || typeof passwordLength === "undefined") {
+  if (passwordLength === "" || typeof passwordLength === "undefined") {
     return;
+
+
   } else {
     passwordRules = setPasswordRules();
     var password = generatePassword(passwordLength, passwordRules);
     passwordTextInputField.value = password;
   }
 }
+
 
 
 
@@ -141,43 +157,5 @@ function generatePassword(passwordLength, passwordRules) {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
