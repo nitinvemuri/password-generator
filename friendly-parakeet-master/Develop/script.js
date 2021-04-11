@@ -13,61 +13,6 @@ const max = 128;
 
 
 
-
-// Set rules for password so it takes the user input and applies it to the generate password function
-function setPasswordRules() {
-  var passwordRules = []
-  var userInput;
-  
-
-  userInput = confirm("Do you want password to have Uppercase letters?")
-
-  if (userInput) {
-    passwordRules.push.apply(passwordRules, uppercaseCharacters);
-  
-
-  userInput = confirm("Do you want password to have Lowercase letters?") 
-
-  if (userInput){
-    passwordRules.push.apply(passwordRules, lowercaseCharacters);
-  }
-
-  userInput = confirm("Do you want password have Special characters?")
-
-  if (userInput) {
-    passwordRules.push.apply(passwordRules, specialCharacters);
-  }
-
-  userInput = confirm("Do you want password have Numbers?")
-
-  if (userInput) {
-    passwordRules.push.apply(passwordRules, numbers);
-
-  } 
-  if (passwordRules.length === 0) {
-    alert (
-      "Must pick one type"
-    );
-      return;
-  }
-  return passwordRules;
-}
-}
-
-//generate password
-function generatePassword(passwordLength, passwordRules) {
-  var password = "";
-  for (var i = 0; i < passwordLength; i++) {
-
-    var random = Math.floor(passwordRules.length * Math.random(i) )
-
-    password += passwordRules[random].charAt(Math.floor(passwordRules[random].length * Math.random(i))
-
-    );
-  }
-  return password;
-}
-
 // Write password to the #password input
 // Set length for password by taking into account the user input and applies it to the generate password function to either get a randomized numher or user inputed number
 function setPasswordLength () {
@@ -124,6 +69,63 @@ function setPasswordLength () {
     }
   }
 
+// Set rules for password so it takes the user input and applies it to the generate password function
+function setPasswordRules() {
+  var passwordRules = []
+  var userInput;
+  
+
+  userInput = confirm("Do you want password to have Uppercase letters?")
+
+  if (userInput) {
+    passwordRules.push.apply(passwordRules, uppercaseCharacters);
+  }
+  
+
+  userInput = confirm("Do you want password to have Lowercase letters?") 
+
+  if (userInput){
+    passwordRules.push.apply(passwordRules, lowercaseCharacters);
+  }
+
+  userInput = confirm("Do you want password have Special characters?")
+
+  if (userInput) {
+    passwordRules.push.apply(passwordRules, specialCharacters);
+  }
+
+  userInput = confirm("Do you want password have Numbers?")
+
+  if (userInput) {
+    passwordRules.push.apply(passwordRules, numbers);
+
+  } 
+  if (passwordRules.length === 0) {
+    alert (
+      "Must pick one type"
+    );
+      return;
+  }
+  return passwordRules;
+}
+
+
+
+//generate password
+function generatePassword(passwordLength, passwordRules) {
+  var password = "";
+  for (var i = 0; i < passwordLength; i++) {
+
+    var random = Math.floor(passwordRules.length * Math.random(i) )
+
+    password += passwordRules[random].charAt(Math.floor(passwordRules[random].length * Math.random(i))
+
+    );
+  }
+  return password;
+}
+
+
 
      
 //write password
@@ -145,7 +147,9 @@ function setPasswordLength () {
     var password = generatePassword(passwordLength, passwordRules);
     passwordTextInputField.value = password;
   }
+  return;
 }
+
 
 
 
