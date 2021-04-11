@@ -150,11 +150,6 @@ function setPasswordLength () {
 
 
 
-  
-//alert (` your password is ${password}`)
-
-
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
