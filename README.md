@@ -27,3 +27,4 @@ function setPasswordLength() {
     alert(
       `Your password length has been set to random number: ${passwordLength}`
     );# password - generator
+# password-generator
